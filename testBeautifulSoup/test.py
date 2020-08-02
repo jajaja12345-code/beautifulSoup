@@ -9,6 +9,10 @@ print(url)
 html = requests.get(url)
 soup = BeautifulSoup(html.content, "html.parser")
 
+title = soup.find(
+    id="recipe-title").select_one(".recipe-title.fn.clearfix").text
+print(title)
+
 ing = soup.find(id="ingredients")
 serv = ing.select_one(".servings_for.yield").text
 # print(serv)
