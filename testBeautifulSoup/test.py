@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 
 print("取得元のurlを入力")
 url = input()
+
 print(url)
 
 html = requests.get(url)
@@ -11,15 +12,15 @@ soup = BeautifulSoup(html.content, "html.parser")
 
 title = soup.find(
     id="recipe-title").select_one(".recipe-title.fn.clearfix").text
-print(title)
+print("recipe title:" + title)
 
 ing = soup.find(id="ingredients")
 serv = ing.select_one(".servings_for.yield").text
-# print(serv)
+print("servings_for yield:" + serv)
 
 ingRow = soup.find(id="ingredients_list").select(".ingredient_row")
-# print(len(ingRow))
 
+print("材料:")
 for a in ingRow:
 
     try:
@@ -56,6 +57,15 @@ for a in ingRow:
         continue
     else:
         print(qAmount)
+
+
+print("step:")
+ingStep = soup.find(id="steps").select(".step")
+# ingStep = soup.find(id = "")
+# print(len(ingStep)) -> 5
+for a in ingStep:
+    print(a.select_one(".instruction").select_one(".step_text").text)
+
 
 # HTML全体を表示する
 # print(soup)
