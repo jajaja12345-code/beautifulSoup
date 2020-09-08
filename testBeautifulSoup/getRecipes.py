@@ -36,8 +36,11 @@ def getText(a, csSelec):
 url = input()
 html = requests.get(url)
 soup = BeautifulSoup(html.content, "html.parser")
+a = ""
+b = ""
 
-if("cookpad" in url):
+
+if(a in url):
     print("title:" + stripBlank(soup.find(
         id="recipe-title").select_one(".recipe-title.fn.clearfix").get_text()))
     ing = soup.find(id="ingredients")
@@ -58,7 +61,7 @@ if("cookpad" in url):
     for a in ingStep:
         print(stripBlank(a.select_one(".instruction").select_one(".step_text").text))
 
-elif("kurashiru" in url):
+elif(b in url):
     print("title:" + stripBlank(soup.select_one(".title-wrapper").get_text()))
     ingS = ""
     ingList = soup.select_one(".ingredient-list").find_all("li")
