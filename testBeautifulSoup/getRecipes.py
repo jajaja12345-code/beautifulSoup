@@ -57,7 +57,8 @@ if(a in url):
     print("材料:")
     print(ingS)
     print("step:")
-    ingStep = soup.find(id="steps").select(".step")
+    ingStep = soup.find(id="steps").select("div[class*=step]")
+    # print(len(ingStep))
     for a in ingStep:
         print(stripBlank(a.select_one(".instruction").select_one(".step_text").text))
 
